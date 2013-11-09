@@ -1,0 +1,57 @@
+.show-meta {
+font-size: 12px;
+padding: 10px;
+border: 2px solid #585858;
+border-radius: 6px;
+background-color: #DFDFDF;
+color: #4D4444;
+display: inline-block;
+text-align: center;
+position: absolute;
+width: 70%;
+z-index: 9999;
+}
+.show-meta span {
+font-size: 30px;
+border-bottom: 2px solid #585858;
+width: 100%;
+display: inline-table;
+padding: 10px 0;
+margin: 0px 0 10px 0;
+}
+.show-meta pre {
+text-align: left;
+background-color: #DFDFDF;
+}
+.entry-taxonomies {
+display: inline;
+list-style: none;
+}
+.tax-terms {
+list-style: none;
+text-align: left;
+}
+span.meta-tab {
+margin: 0px 0px 0 0;
+border: 2px solid #585858;
+border-radius: 8px;
+background-color: #DFDFDF;
+}
+.meta-data {
+margin: 0;
+}
+.tax-tab {
+width: 100%;
+background-color: #F0F0F0;
+border: 2px solid #585858;
+float: left;
+width: 30%;
+min-width: 180px;
+padding: 5px;
+}
+.tax-tab .meta-tab {
+background-color: #F0F0F0;
+margin: -7px -54px 0 0;
+padding: 5px;
+width: 100%;
+}
