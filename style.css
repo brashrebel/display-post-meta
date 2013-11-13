@@ -3,7 +3,7 @@ font-size: 12px;
 padding: 10px;
 border: 2px solid #585858;
 border-radius: 6px;
-background-color: #DFDFDF;
+background-color: rgba(223, 223, 223, 0.85);
 color: #4D4444;
 display: inline-block;
 text-align: center;
@@ -21,7 +21,7 @@ margin: 0px 0 10px 0;
 }
 .show-meta pre {
 text-align: left;
-background-color: #DFDFDF;
+background-color: rgba(223, 223, 223, 0.85);
 }
 .entry-taxonomies {
 display: inline;
