@@ -10,7 +10,7 @@ function dpm_menu_bar() {
 		'title' => __('DPM', 'text_domain'),
 		'href' => '?show_meta',
 		'meta' => array(
-				'title' => __('RBM')
+				'title' => __('DPM')
 				)
 		);
 	$wp_admin_bar->add_menu( $args );
