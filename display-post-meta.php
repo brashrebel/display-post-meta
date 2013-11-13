@@ -55,4 +55,5 @@ if (stripos($_SERVER['REQUEST_URI'],'?show_meta') !== false) {
 add_action('wp', 'display_meta');
 }
 
+include('admin-bar.php');
 ?>
