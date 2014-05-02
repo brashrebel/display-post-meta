@@ -9,8 +9,6 @@ Author URI: http://realbigmarketing.com/staff/kyle
 
 /*
 Credit for taxonomies part goes here http://stackoverflow.com/questions/14956624/show-all-taxonomies-for-a-specific-post-type
-Check if URL contains https://forums.digitalpoint.com/threads/if-url-contains-x-then.1045579/
-Idea for the ?show_meta URL trick from Peter Shackelford http://twitter.com/pixelplow
 */
 function get_post_meta_all($post_id){
     global $wpdb;
@@ -25,15 +23,19 @@ function get_post_meta_all($post_id){
     };
     return $data;
 }
-
-
+// Register stylesheet
+function dpm_register_style() {
+  $show_meta = $_GET['show_meta'];
+  wp_register_style( 'DPMstyle', plugins_url('style.css', __FILE__) );
+    if ($show_meta == 'true') {
+      wp_enqueue_style( 'DPMstyle' );
+    }
+}
+add_action('wp_enqueue_scripts', 'dpm_register_style');
 //Create shortcode
 function dpm_display( $atts ){
 if ( is_user_logged_in() ) {
-$display_meta_url = site_url();
-$display_it = "<link rel='stylesheet' type='text/css' href='".$display_meta_url."/wp-content/plugins/display-post-meta/style.css'>";
 $meta = get_post_meta_all(get_the_ID());
-   echo $display_it;
    echo '<div class="show-meta"><span class="meta-tab">All post meta data</span><p class="meta-data">';
    print("<pre>".print_r($meta,true)."</pre>");
 //Taxonomies
