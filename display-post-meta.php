@@ -28,7 +28,7 @@ function get_post_meta_all($post_id){
 
 
 //Create shortcode
-function display_meta( $atts ){
+function dpm_display( $atts ){
 if ( is_user_logged_in() ) {
 $display_meta_url = site_url();
 $display_it = "<link rel='stylesheet' type='text/css' href='".$display_meta_url."/wp-content/plugins/display-post-meta/style.css'>";
@@ -51,9 +51,13 @@ $meta = get_post_meta_all(get_the_ID());
 }
 
 add_shortcode( 'show_meta', 'display_meta' );
-if (stripos($_SERVER['REQUEST_URI'],'?show_meta') !== false) {
-add_action('wp', 'display_meta');
+function dpm_activate() {
+  $show_meta = $_GET['show_meta'];
+  if ($show_meta == 'true') {
+    dpm_display();
+  }
 }
+add_action('wp', 'dpm_activate');
 
 include('admin-bar.php');
 ?>

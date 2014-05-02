@@ -3,12 +3,12 @@
 function dpm_menu_bar() {
 
 	global $wp_admin_bar;
-
+	$dpm_link = add_query_arg( 'show_meta', 'true' );
 	$args = array(
 		'parent' => false,
 		'id' => 'show_meta',
 		'title' => __('DPM', 'text_domain'),
-		'href' => '?show_meta',
+		'href' => $dpm_link,
 		'meta' => array(
 				'title' => __('DPM')
 				)
