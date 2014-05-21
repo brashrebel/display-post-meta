@@ -55,3 +55,6 @@ margin: -7px -54px 0 0;
 padding: 5px;
 width: 100%;
 }
+#wp-admin-bar-show_meta.dpm-on a.ab-item {
+background-color: #B00;
+}
