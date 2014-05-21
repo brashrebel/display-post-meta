@@ -2,7 +2,7 @@
 /*
 Plugin Name: Display Post Meta
 Description: This plugin allows you to display the meta data for a post. Just click the DPM link in the toolbar to show meta info.
-Version: 1.1.4
+Version: 1.2.0
 Author: Kyle Maurer
 Author URI: http://realbigmarketing.com/staff/kyle
 */
