@@ -114,4 +114,4 @@ Data is output in tabs on the side of the screen that reveal more on hover.
 
 == Upgrade Notice ==
 
-= 1.1.3 =
+= 1.2.0 =
