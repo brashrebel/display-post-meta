@@ -1,6 +1,6 @@
 === Display Post Meta ===
 
-Contributors: BrashRebel
+Contributors: BrashRebel, bretterer
 
 Tags: post meta, custom fields, taxonomies
 
@@ -29,7 +29,6 @@ To use this plugin, simply activate then either simply navigate to a post, page 
 
 
 == Installation ==
-
 
 
 Using this plugin is very simple. All you have to do is:
@@ -110,4 +109,4 @@ Data is output in tabs on the side of the screen that reveal more on hover.
 
 == Upgrade Notice ==
 
-= 1.1.2 =
+= 1.1.3 =
