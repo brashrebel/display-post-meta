@@ -8,7 +8,7 @@ Requires at least: 3.0.0
 
 Tested up to: 3.9
 
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 
 License: GPLv2 or later
 
@@ -76,6 +76,9 @@ Data is output in tabs on the side of the screen that reveal more on hover.
 
 
 == Changelog ==
+
+= 1.1.3 =
+* Fix for a few undefined index errors shwoing when in debug mode.
 
 = 1.1.2 =
 

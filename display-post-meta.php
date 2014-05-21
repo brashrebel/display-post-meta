@@ -2,7 +2,7 @@
 /*
 Plugin Name: Display Post Meta
 Description: This plugin allows you to display the meta data for a post. Just click the DPM link in the toolbar to show meta info.
-Version: 1.1.2
+Version: 1.1.3
 Author: Kyle Maurer
 Author URI: http://realbigmarketing.com/staff/kyle
 */
@@ -25,15 +25,15 @@ function get_post_meta_all($post_id){
 }
 // Register stylesheet
 function dpm_register_style() {
-  $show_meta = $_GET['show_meta'];
+  $show_meta = isset($_GET['show_meta']) ? true : false;
   wp_register_style( 'DPMstyle', plugins_url('style.css', __FILE__) );
-    if ($show_meta == 'true') {
+    if ($show_meta === true) {
       wp_enqueue_style( 'DPMstyle' );
     }
 }
 add_action('wp_enqueue_scripts', 'dpm_register_style');
 //Create shortcode
-function dpm_display( $atts ){
+function dpm_display( ){
 if ( is_user_logged_in() ) {
 $meta = get_post_meta_all(get_the_ID());
    echo '<div class="show-meta"><span class="meta-tab">All post meta data</span><p class="meta-data">';
@@ -54,8 +54,8 @@ $meta = get_post_meta_all(get_the_ID());
 
 add_shortcode( 'show_meta', 'display_meta' );
 function dpm_activate() {
-  $show_meta = $_GET['show_meta'];
-  if ($show_meta == 'true') {
+  $show_meta = isset($_GET['show_meta']) ? true : false;
+  if ($show_meta === true) {
     dpm_display();
   }
 }
