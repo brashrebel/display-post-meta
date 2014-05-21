@@ -3,7 +3,12 @@
 function dpm_menu_bar() {
 
 	global $wp_admin_bar;
-	$dpm_link = add_query_arg( 'show_meta', 'true' );
+	$query = isset($_GET['show_meta']) ? true : false;
+  if($query === true) {
+    $dpm_link = remove_query_arg( 'show_meta' );
+  } else {
+	  $dpm_link = add_query_arg( 'show_meta', 'true' );
+  }
 	$args = array(
 		'parent' => false,
 		'id' => 'show_meta',
