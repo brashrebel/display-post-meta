@@ -8,7 +8,7 @@ Requires at least: 3.0.0
 
 Tested up to: 3.9
 
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 
 License: GPLv2 or later
 
@@ -77,7 +77,12 @@ Data is output in tabs on the side of the screen that reveal more on hover.
 
 == Changelog ==
 
+= 1.1.4 =
+
+* Ability added to close DPM window by clicking on 'DPM' from the admin bar
+
 = 1.1.3 =
+
 * Fix for a few undefined index errors shwoing when in debug mode.
 
 = 1.1.2 =
