@@ -87,7 +87,5 @@ class DisplayPostMeta {
   }
 }
 $dpm = new DisplayPostMeta;
-//add_action('wp_footer', $dpm->activate());
-
 include('admin-bar.php');
 ?>
