@@ -8,7 +8,7 @@ Requires at least: 3.0.0
 
 Tested up to: 3.9
 
-Stable tag: 1.2.0
+Stable tag: 1.3
 
 License: GPLv2 or later
 
@@ -36,33 +36,29 @@ Using this plugin is very simple. All you have to do is:
 
 1. Upload the `display-post-meta` folder to the `/wp-content/plugins/` directory
 
-1. Activate the plugin through the 'Plugins' menu in WordPress
+2. Activate the plugin through the 'Plugins' menu in WordPress
 
-1. Navigate to any Post or Page on your website and click on the "DPM" link in the toolbar.
+3. Navigate to any Post or Page on your website and click on the "DPM" link in the toolbar.
 
 
 
 == Frequently Asked Questions ==
 
 
-
 = What is this plugin for? =
-
 
 
 When working with WordPress it is often useful to view the meta data that is being associated with a given post or page. This can be helpful especially when designing templates and other such things. This plugin simply outputs in a  visual way, all the data it can find.
 
 
-
 = What can we expect in future releases? =
 
-
-
-* Better support for custom taxonomies.
 
 * A better looking design.
 
 * Choices for how you would like to the data to be displayed.
+
+* More detailed data pertaining to the current post
 
 
 
@@ -72,9 +68,17 @@ When working with WordPress it is often useful to view the meta data that is bei
 
 Data is output in tabs on the side of the screen that reveal more on hover.
 
-
-
 == Changelog ==
+
+= 1.3 =
+
+* Lots of styling adjustments
+* Output content on `wp_footer` hook instead of `wp` (which was so dumb)
+* Better naming and modulation of functions
+* Add support for custom taxonomies on all post types
+* Greatly improved display of custom field data
+* Removed the `[show_meta]` shortcode
+* Add clarifying statement if no custom fields
 
 = 1.2.0 = 
 
@@ -107,11 +111,13 @@ Data is output in tabs on the side of the screen that reveal more on hover.
 
 = 1.0 =
 
-
 * Initial release.
-
 
 
 == Upgrade Notice ==
 
-= 1.2.0 =
+= 1.3 =
+
+* Better styling
+* Better custom taxonomy support
+* Cleaner code
