@@ -6,9 +6,9 @@ Tags: post meta, custom fields, taxonomies
 
 Requires at least: 3.0.0
 
-Tested up to: 3.9
+Tested up to: 3.9.1
 
-Stable tag: 1.3
+Stable tag: 1.3.1
 
 License: GPLv2 or later
 
@@ -69,6 +69,11 @@ When working with WordPress it is often useful to view the meta data that is bei
 Data is output in tabs on the side of the screen that reveal more on hover.
 
 == Changelog ==
+
+= 1.3.1 =
+
+* Placed all core functions into a class
+* Improved WordPress coding standards compliance
 
 = 1.3 =
 
