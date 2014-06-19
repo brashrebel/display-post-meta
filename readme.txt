@@ -96,12 +96,12 @@ Data is output in tabs on the side of the screen that reveal more on hover.
 
 = 1.1.3 =
 
-* Fix for a few undefined index errors shwoing when in debug mode.
+* Fix for a few undefined index errors showing when in debug mode.
 
 = 1.1.2 =
 
 * Register stylesheet
-* Enqueue stylesheet if show_meta query parameter is equal to true
+* Enqueue stylesheet if `show_meta` query parameter is equal to true
 
 = 1.1.1 =
 
