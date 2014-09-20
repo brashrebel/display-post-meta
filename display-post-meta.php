@@ -80,6 +80,7 @@ class DisplayPostMeta {
     $show_meta = isset( $_GET['show_meta'] ) ? true : false;
     if ( $show_meta === true && is_user_logged_in() ) {
       echo '<div class="show-meta">';
+	    echo '<span class="dpm-close"><a href="'. remove_query_arg( 'show_meta' ) .'">X</a></span>';
       $this->custom_fields();
       $this->taxonomies();
       echo '</div>';
