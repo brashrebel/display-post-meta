@@ -51,8 +51,8 @@ class DisplayPostMeta {
 		if ( $meta ) {
 			echo '<ul>';
 			foreach ( $meta as $key => $value ) {
-				echo '<li><strong>' . $key . '</strong>: ';
-				echo $value . '</li>';
+				echo '<li><strong>' . esc_html( $key ) . '</strong>: ';
+				echo wp_kses_post( $value ) . '</li>';
 			}
 			echo '</ul>';
 		} else {
@@ -69,10 +69,8 @@ class DisplayPostMeta {
 			if ( $terms_list ) {
 				?>
 				<div class="tax-tab">
-				<span class="tax-taxonomy">
-            <?php echo $taxonomy; ?>
-          </span>
-				<?php echo $terms_list;
+				<span class="tax-taxonomy"><?php echo esc_html( $taxonomy ); ?></span>
+				<?php echo wp_kses_post( $terms_list );
 			}
 		}
 	}
@@ -81,6 +79,11 @@ class DisplayPostMeta {
 	public function other() {
 		echo '<span class="meta-tab">Other</span>';
 		echo '<ul>';
+		echo '<li><strong>ID: </strong>' . get_the_id() . '</li>';
+		echo '<li><strong>Author: </strong>' . get_the_author() . '</li>';
+		echo '<li><strong>Published: </strong>' . get_the_date() . '</li>';
+		echo '<li><strong>Last modified: </strong>' . get_the_modified_date() . '</li>';
+		echo '<li><strong>Post status: </strong>' . get_post_status() . '</li>';
 		echo '<li><strong>Template: </strong>' . basename( get_page_template() ) . '</li>';
 		echo '</ul>';
 	}
