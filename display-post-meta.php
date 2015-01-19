@@ -4,7 +4,7 @@ Plugin Name: Display Post Meta
 Description: This plugin allows you to display the meta data for a post. Just click the DPM link in the toolbar to show meta info.
 Version: 1.5
 Author: Kyle Maurer
-Author URI: http://realbigmarketing.com/staff/kyle
+Author URI: http://realbigplugins.com
 */
 
 /*
@@ -16,6 +16,8 @@ class DisplayPostMeta {
 	public function __construct() {
 		add_action( 'wp_footer', array( $this, 'activate' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_style' ) );
+		add_action( 'wp_footer', array( $this, 'scripts' ) );
+		add_filter( 'edit_post_link', array( $this, 'add_link' ) );
 	}
 
 	// Get all the custom field data
@@ -37,7 +39,7 @@ class DisplayPostMeta {
 	// Register stylesheet
 	function register_style() {
 		$show_meta = isset( $_GET['show_meta'] ) ? true : false;
-		wp_register_style( 'DPMstyle', plugins_url( 'style.css', __FILE__ ), array(), '1.4' );
+		wp_register_style( 'DPMstyle', plugins_url( 'style.css', __FILE__ ), array(), '1.5' );
 		if ( $show_meta === true ) {
 			wp_enqueue_style( 'DPMstyle' );
 		}
@@ -101,6 +103,67 @@ class DisplayPostMeta {
 		}
 	}
 
+	/**
+	 * Outputs necessary styling and scripts for toolbar button and in content link
+	 */
+	public function scripts() {
+		if ( current_user_can( 'manage_options' ) && ! is_archive() && ! is_admin() && ! is_search() && ! is_404() && ! is_home() ) {
+			echo "<script type='text/javascript'>
+			<!--
+			    function toggle_visibility(id) {
+			       var e = document.getElementById(id);
+			       if(e.style.display == 'block')
+			          e.style.display = 'none';
+			       else
+			          e.style.display = 'block';
+			    }
+			//-->
+			</script>";
+			echo '<style type="text/css">@media screen and (max-width: 782px) {
+			#wp-toolbar > ul > li#wp-admin-bar-show_meta {
+			display: list-item;
+			}
+			#wp-toolbar > ul > li#wp-admin-bar-show_meta a {
+			font: 18px/44px "Open Sans", sans-serif !important;
+			width: auto !important;
+			padding: 0 10px !important;
+			color: #aaa !important;
+			} }</style>';
+		}
+	}
+
+	/**
+	 * Content which is hidden and displayed by link appended to edit post link
+	 */
+	public function meta_content() {
+		echo '<div id="hidden-meta" style="display: none">';
+		$this->custom_fields();
+		$this->other();
+		$this->taxonomies();
+		echo '</div>';
+	}
+
+	/**
+	 * Link that gets appended to the edit post link on the front end
+	 */
+	public function meta_link() {
+		echo '<a href="#" onclick="toggle_visibility(\'hidden-meta\');">Post Meta</a>';
+	}
+
+	/**
+	 * Filters the edit post link on the front end and adds meta link and content
+	 *
+	 * @param $url
+	 *
+	 * @return string
+	 */
+	public function add_link( $url ) {
+		if ( current_user_can( 'manage_options' ) && ! is_archive() && ! is_admin() && ! is_search() && ! is_404() && ! is_home() ) {
+			return $url . $this->meta_link() . $this->meta_content();
+		} else {
+			return $url;
+		}
+	}
 }
 
 $dpm = new DisplayPostMeta;

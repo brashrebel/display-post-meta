@@ -1,8 +1,15 @@
 <?php
+// Exit if loaded directly
+if ( ! defined( 'ABSPATH' ) ) {
+	die();
+}
 
+/**
+ * Adds the DPM button to the toolbar
+ */
 function dpm_menu_bar() {
 
-	if ( current_user_can( 'manage_options' ) ) {
+	if ( current_user_can( 'manage_options' ) && ! is_archive() && ! is_admin() && ! is_search() && ! is_404() && ! is_home() ) {
 		global $wp_admin_bar;
 		$query = isset( $_GET['show_meta'] ) ? true : false;
 		if ( $query === true ) {
