@@ -2,7 +2,7 @@
 /*
 Plugin Name: Display Post Meta
 Description: This plugin allows you to display the meta data for a post. Just click the DPM link in the toolbar to show meta info.
-Version: 1.4
+Version: 1.5
 Author: Kyle Maurer
 Author URI: http://realbigmarketing.com/staff/kyle
 */
@@ -91,12 +91,12 @@ class DisplayPostMeta {
 	// Actually display the stuff
 	public function activate() {
 		$show_meta = isset( $_GET['show_meta'] ) ? true : false;
-		if ( $show_meta === true && is_user_logged_in() ) {
+		if ( $show_meta === true && current_user_can( 'manage_options' ) ) {
 			echo '<div class="show-meta">';
 			echo '<span class="dpm-close"><a href="' . remove_query_arg( 'show_meta' ) . '">X</a></span>';
 			$this->custom_fields();
-			$this->taxonomies();
 			$this->other();
+			$this->taxonomies();
 			echo '</div>';
 		}
 	}

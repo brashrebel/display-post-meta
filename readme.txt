@@ -1,25 +1,17 @@
 === Display Post Meta ===
 
 Contributors: BrashRebel, bretterer
-
 Donate link: http://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=admin%40realbigmarketing%2ecom
-
 Tags: post meta, custom fields, taxonomies
-
 Requires at least: 3.0.0
-
 Tested up to: 4.0
-
 Stable tag: 1.4
-
 License: GPLv2 or later
-
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 
 
 == Description ==
-
 
 
 This plugin was designed for the purpose of outputting the meta data associated with a WP post or page so developers and site designers can verify what information is available.
@@ -28,7 +20,7 @@ To use this plugin, simply activate then either simply navigate to a post, page 
 
 `http://example.com/test-post/?show_meta=true`
 
-
+If you are interested in learning about the other plugins we have created and/or are working on and would like to know about new releases and special offers we have, please [subscribe here](http://eepurl.com/3KR1D).
 
 == Installation ==
 
@@ -71,6 +63,11 @@ When working with WordPress it is often useful to view the meta data that is bei
 Data is output in tabs on the side of the screen that reveal more on hover.
 
 == Changelog ==
+
+= 1.5 =
+
+* Check to ensure user is an administrator before displaying content or button rather than just logged in
+
 
 = 1.4 =
 
