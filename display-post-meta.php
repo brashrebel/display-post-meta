@@ -32,7 +32,7 @@ class DisplayPostMeta {
 		foreach ( $wpdb->last_result as $k => $v ) {
 			$data[ $v->meta_key ] = [
 				'value' => $v->meta_value,
-				'type' => $this->get_type($v->meta_value)
+				'type'  => $this->get_type( $v->meta_value )
 			];
 		};
 
@@ -57,7 +57,7 @@ class DisplayPostMeta {
 			echo '<ul>';
 			foreach ( $meta as $key => $value ) {
 				echo '<li><strong>' . esc_html( $key ) . '</strong>: ';
-				echo wp_kses_post( $value ) . '</li>';
+				echo wp_kses_post( $value['value'] ) . ' - <em>' . $value['type'] . '</em></li>';
 			}
 			echo '</ul>';
 		} else {
@@ -170,18 +170,37 @@ class DisplayPostMeta {
 
 	/**
 	 * Return a type for the provided value
+	 *
 	 * @param mixed $value
+	 *
 	 * @return string
 	 */
-	private function get_type($value) {
-		if(is_array($value)) return "array";
-		if(is_bool($value)) return "boolean";
-		if(is_float($value)) return "float";
-		if(is_int($value)) return "integer";
-		if(is_null($value)) return "NULL";
-		if(is_object($value)) return "object";
-		if(is_resource($value)) return "resource";
-		if(is_string($value)) return "string";
+	private function get_type( $value ) {
+		if ( is_serialized( $value ) ) {
+			return "array";
+		}
+		if ( is_bool( $value ) || 'true' == $value || 'false' == $value ) {
+			return "boolean";
+		}
+		if ( is_float( $value ) ) {
+			return "float";
+		}
+		if ( is_int( $value ) ) {
+			return "integer";
+		}
+		if ( is_null( $value ) ) {
+			return "NULL";
+		}
+		if ( is_object( $value ) ) {
+			return "object";
+		}
+		if ( is_resource( $value ) ) {
+			return "resource";
+		}
+		if ( is_string( $value ) ) {
+			return "string";
+		}
+
 		return "unknown";
 	}
 }
