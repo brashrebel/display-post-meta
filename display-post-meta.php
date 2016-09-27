@@ -30,7 +30,10 @@ class DisplayPostMeta {
           WHERE `post_id` = $post_id
       " );
 		foreach ( $wpdb->last_result as $k => $v ) {
-			$data[ $v->meta_key ] = $v->meta_value;
+			$data[ $v->meta_key ] = [
+				'value' => $v->meta_value,
+				'type' => $this->get_type($v->meta_value)
+			];
 		};
 
 		return $data;
@@ -163,6 +166,23 @@ class DisplayPostMeta {
 		} else {
 			return $url;
 		}
+	}
+
+	/**
+	 * Return a type for the provided value
+	 * @param mixed $value
+	 * @return string
+	 */
+	private function get_type($value) {
+		if(is_array($value)) return "array";
+		if(is_bool($value)) return "boolean";
+		if(is_float($value)) return "float";
+		if(is_int($value)) return "integer";
+		if(is_null($value)) return "NULL";
+		if(is_object($value)) return "object";
+		if(is_resource($value)) return "resource";
+		if(is_string($value)) return "string";
+		return "unknown";
 	}
 }
 
