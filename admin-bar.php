@@ -20,8 +20,12 @@ function dpm_menu_bar() {
 			'meta'   => array(
 				'title' => __( 'DPM' ),
 				'class' => 'dpm-admin-bar-btn',
+				// Call jQuery statically to add the thickbox class on click.
+				'onclick' => esc_js( 'jQuery(this).addClass("thickbox");' ),
+			),
 		);
 		$wp_admin_bar->add_menu( $args );
+
 	}
 }
 
