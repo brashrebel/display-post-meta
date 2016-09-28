@@ -16,6 +16,7 @@ class DisplayPostMeta {
 
 	public function __construct() {
 		add_action( 'wp_footer', array( $this, 'activate' ) );
+		add_filter( 'the_content', array( $this, 'add_thickbox_content' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_style' ) );
 		add_action( 'wp_footer', array( $this, 'scripts' ) );
 		add_filter( 'edit_post_link', array( $this, 'add_link' ) );
@@ -108,35 +109,6 @@ class DisplayPostMeta {
 	}
 
 	/**
-	 * Outputs necessary styling and scripts for toolbar button and in content link
-	 */
-	public function scripts() {
-		if ( current_user_can( 'manage_options' ) && ! is_archive() && ! is_admin() && ! is_search() && ! is_404() && ! is_home() ) {
-			echo "<script type='text/javascript'>
-			<!--
-			    function toggle_visibility(id) {
-			       var e = document.getElementById(id);
-			       if(e.style.display == 'block')
-			          e.style.display = 'none';
-			       else
-			          e.style.display = 'block';
-			    }
-			//-->
-			</script>";
-			echo '<style type="text/css">@media screen and (max-width: 782px) {
-			#wp-toolbar > ul > li#wp-admin-bar-show_meta {
-			display: list-item;
-			}
-			#wp-toolbar > ul > li#wp-admin-bar-show_meta a {
-			font: 18px/44px "Open Sans", sans-serif !important;
-			width: auto !important;
-			padding: 0 10px !important;
-			color: #aaa !important;
-			} }</style>';
-		}
-	}
-
-	/**
 	 * Content which is hidden and displayed by link appended to edit post link
 	 */
 	public function meta_content() {
@@ -151,7 +123,7 @@ class DisplayPostMeta {
 	 * Link that gets appended to the edit post link on the front end
 	 */
 	public function meta_link() {
-		echo '<a href="#" onclick="toggle_visibility(\'hidden-meta\');">Post Meta</a>';
+		echo '<a href="#TB_inline?&inlineId=hidden-meta" class="thickbox" title="' . esc_html( 'Display Post Meta', 'display-post-meta' ) . '">Post Meta</a>';
 	}
 
 	/**
@@ -163,9 +135,24 @@ class DisplayPostMeta {
 	 */
 	public function add_link( $url ) {
 		if ( current_user_can( 'manage_options' ) && ! is_archive() && ! is_admin() && ! is_search() && ! is_404() && ! is_home() ) {
-			return $url . $this->meta_link() . $this->meta_content();
+			return $url . $this->meta_link();
 		} else {
 			return $url;
+		}
+	}
+
+	/**
+	 * Filters the the_content() on the front end and adds modal content before
+	 *
+	 * @param $content
+	 *
+	 * @return string
+	 */
+	public function add_thickbox_content( $content ) {
+		if ( current_user_can( 'manage_options' ) && ! is_archive() && ! is_admin() && ! is_search() && ! is_404() && ! is_home() ) {
+			return $this->meta_content() . $content;
+		} else {
+			return $content;
 		}
 	}
 
