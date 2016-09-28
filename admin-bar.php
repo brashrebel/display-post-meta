@@ -19,8 +19,7 @@ function dpm_menu_bar() {
 			'href'   => esc_url( '#TB_inline?&inlineId=hidden-meta' ),
 			'meta'   => array(
 				'title' => __( 'DPM' ),
-				'class' => $dpm_class
-			)
+				'class' => 'dpm-admin-bar-btn',
 		);
 		$wp_admin_bar->add_menu( $args );
 	}
