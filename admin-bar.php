@@ -11,14 +11,6 @@ function dpm_menu_bar() {
 
 	if ( current_user_can( 'manage_options' ) && ! is_archive() && ! is_admin() && ! is_search() && ! is_404() && ! is_home() && is_singular() ) {
 		global $wp_admin_bar;
-		$query = isset( $_GET['show_meta'] ) ? true : false;
-		if ( $query === true ) {
-			$dpm_link  = remove_query_arg( 'show_meta' );
-			$dpm_class = 'dpm-on';
-		} else {
-			$dpm_link  = add_query_arg( 'show_meta', 'true' );
-			$dpm_class = 'dpm-off';
-		}
 		$args = array(
 			'parent' => false,
 			'id'     => 'show_meta',
