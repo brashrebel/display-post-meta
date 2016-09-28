@@ -18,7 +18,6 @@ class DisplayPostMeta {
 		add_action( 'wp_footer', array( $this, 'activate' ) );
 		add_filter( 'the_content', array( $this, 'add_thickbox_content' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_style' ) );
-		add_action( 'wp_footer', array( $this, 'scripts' ) );
 		add_filter( 'edit_post_link', array( $this, 'add_link' ) );
 	}
 
@@ -45,6 +44,7 @@ class DisplayPostMeta {
 	function register_style() {
 		$show_meta = isset( $_GET['show_meta'] ) ? true : false;
 		wp_register_style( 'DPMstyle', plugins_url( 'style.css', __FILE__ ), array(), '1.5' );
+		add_thickbox();
 		if ( $show_meta === true ) {
 			wp_enqueue_style( 'DPMstyle' );
 		}
