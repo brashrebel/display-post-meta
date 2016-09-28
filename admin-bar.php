@@ -15,10 +15,10 @@ function dpm_menu_bar() {
 		$args = array(
 			'parent' => false,
 			'id'     => 'show_meta',
-			'title'  => __( 'DPM', 'text_domain' ),
+			'title'  => __( 'DPM', 'display-post-meta' ),
 			'href'   => esc_url( '#TB_inline?&inlineId=hidden-meta' ),
 			'meta'   => array(
-				'title' => __( 'DPM' ),
+				'title' => __( 'Display Post Meta', 'display-post-meta' ),
 				'class' => 'dpm-admin-bar-btn',
 				// Call jQuery statically to add the thickbox class on click.
 				'onclick' => esc_js( 'jQuery(this).addClass("thickbox");' ),
