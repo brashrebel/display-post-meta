@@ -5,6 +5,7 @@ Description: This plugin allows you to display the meta data for a post. Just cl
 Version: 1.5
 Author: Kyle Maurer
 Author URI: http://realbigplugins.com
+Text Domain: display-post-meta
 */
 
 /*
