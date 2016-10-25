@@ -174,15 +174,31 @@ class DisplayPostMeta {
 	 * @return string
 	 */
 	private function get_type($value) {
-		if(is_array($value)) return "array";
-		if(is_bool($value)) return "boolean";
-		if(is_float($value)) return "float";
-		if(is_int($value)) return "integer";
-		if(is_null($value)) return "NULL";
-		if(is_object($value)) return "object";
-		if(is_resource($value)) return "resource";
-		if(is_string($value)) return "string";
-		return "unknown";
+		if(is_array($value) || is_serialized($value)) {
+			return 'array';
+		}
+		if(is_bool($value) || preg_match('/(true|false)/i', $value)) {
+			return 'boolean';
+		}
+		if(is_integer($value) || false !== filter_var($value, FILTER_VALIDATE_INT)) {
+			return 'integer';
+		}
+		if(is_float($value) || false !== filter_var($value, FILTER_VALIDATE_FLOAT)) {
+			return 'float';
+		}
+		if(is_null($value) || preg_match('/(null)/i', $value)) {
+			return 'NULL';
+		}
+		if(is_object($value)) {
+			return 'object';
+		}
+		if(is_resource($value)) {
+			return 'resource';
+		}
+		if(is_string($value)) {
+			return 'string';
+		}
+		return 'unknown';
 	}
 }
 
